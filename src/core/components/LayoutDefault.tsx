@@ -1,8 +1,10 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import MailIcon from '@mui/icons-material/Mail';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
 import { ReactNode, useState } from 'react';
-import { AppBar, Box, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, Toolbar, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   children: ReactNode
@@ -33,7 +35,7 @@ export const LayoutDefault = (props : IProps) => {
            </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer sx={{ width: drawerWidth, '& .MuiDrawer-paper': { width: drawerWidth,}}} variant="persistent" anchor="left" open={open}>
+      <Drawer sx={{ width: drawerWidth, '& .MuiDrawer-paper': { width: drawerWidth,}}} variant="persistent" anchor="left" open={open} onClick={handleDrawerClose}>
         <Box display='flex' alignItems='center' justifyContent='flex-end'>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
@@ -42,12 +44,21 @@ export const LayoutDefault = (props : IProps) => {
         <Divider />
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Cliente"} />
-            </ListItemButton>
+              <ListItemButton>
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <Link to="/">Início</Link>
+              </ListItemButton>
+            </ListItem>
+
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+                <Link to="/Cliente">Cliente</Link>
+              </ListItemButton>
             </ListItem>
         </List>
         <Divider />
