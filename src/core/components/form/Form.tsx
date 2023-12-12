@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 
 interface Iprops {
   children: ReactNode,
-  handleSubmit: (data: any) => void,
+  handleSubmit?: (data: any) => void,
 }
 
 export const Form = (props : Iprops) => {

@@ -1,0 +1,3 @@
+interface IFormCLiente{
+  uf: string
+}

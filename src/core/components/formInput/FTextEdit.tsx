@@ -1,19 +1,18 @@
 import { TextField } from "@mui/material";
-import { Control, Controller } from "react-hook-form"
+import { Control, Controller, FieldPath, FieldValues } from "react-hook-form"
 
-interface IProps {
-  control: Control;
-  field: string,
+interface IProps<T extends FieldValues> {
+  control: Control<T, any>;
+  field: FieldPath<T>,
   label: string,
   fullWidth?: boolean,
 }
 
-export const FTextEdit = (props: IProps) => {
+export const FTextEdit = <T extends FieldValues>(props: IProps<T>) => {
     return (
       <Controller
-        name="url"
+        name={props.field}
         control={props.control}
-        defaultValue=""
         render={({field, fieldState}) => (
           <TextField
             {...field}
