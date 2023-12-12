@@ -25,7 +25,7 @@ export const CadastroCliente = () => {
         <LayoutDefault>
           <PageTitle>Cadastro de cliente</PageTitle>
           <Form handleSubmit={form.handleSubmit((a) => console.log(a))}>
-             <FAutoComplete control={form.control} list={listEstados} field="uf" keyField="uf" listField="descricao" label="Estado" fullWidth></FAutoComplete> 
+             <FAutoComplete control={form.control} listItens={listEstados} field="uf" keyField="uf" listField="descricao" label="Estado" fullWidth></FAutoComplete> 
              <Button type="submit">AA</Button>
           </Form>
         </LayoutDefault>

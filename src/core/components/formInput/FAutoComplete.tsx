@@ -8,7 +8,7 @@ interface IProps<T extends FieldValues> {
   listField: string,
   keyField: string,
   fullWidth?: boolean,
-  list: any[],
+  listItens: any[],
 }
 
 export function FAutoComplete<T extends FieldValues>(props: IProps<T>) {
@@ -18,9 +18,9 @@ export function FAutoComplete<T extends FieldValues>(props: IProps<T>) {
       name={props.field}
       render={({ field: { ref, onChange, ... field } }) => (
         <Autocomplete
-          options={props.list}
-          onChange={(_, data) => onChange(data ?? null)}
-          value={field.value ?? null}
+          options={props.listItens}
+          onChange={(_, data) => onChange(data[props.keyField] ?? null)}
+          value={props.listItens?.find(li =>li[props.keyField] === field.value) ?? null}
           getOptionLabel={(option) => option[props.listField] ?? ""}
           isOptionEqualToValue={(option, value) => option == value}
           fullWidth={props.fullWidth}
