@@ -19,7 +19,7 @@ export function FAutoComplete<T extends FieldValues>(props: IProps<T>) {
       render={({ field: { ref, onChange, ... field } }) => (
         <Autocomplete
           options={props.listItens}
-          onChange={(_, data) => onChange(data[props.keyField] ?? null)}
+          onChange={(_, data) => onChange(data ? data[props.keyField] : null)}
           value={props.listItens?.find(li =>li[props.keyField] === field.value) ?? null}
           getOptionLabel={(option) => option[props.listField] ?? ""}
           isOptionEqualToValue={(option, value) => option == value}
@@ -30,6 +30,8 @@ export function FAutoComplete<T extends FieldValues>(props: IProps<T>) {
               {...field}
               inputRef={ref}
               label={props.label}
+              margin="dense"
+              // sx={{paddingRight: 1}}
               />
           )}
         />)}
