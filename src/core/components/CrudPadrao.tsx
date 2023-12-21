@@ -22,6 +22,7 @@ interface IProps<T extends FieldValues>{
 export const CrudPadrao = <T extends FieldValues>(props: IProps<T>) => {
   const [modo, setModo] = useState<ModoTipo>(ModoTipo.Lista);
   const [itens, setItens] = useState<any[]>([]);
+  const [defaultValues] = useState<T>(props.form.getValues());
 
   useEffect(() => {
     doConsultarItens();
@@ -50,9 +51,13 @@ export const CrudPadrao = <T extends FieldValues>(props: IProps<T>) => {
     setItens(newItens);
   }
 
+  const doLimpar = () => {
+    props.form.reset({...defaultValues});
+  }
+
   const handleCadastrar = () => {
+    doLimpar();
     setModo(ModoTipo.Cadastro);
-    props.form.reset();
   }
 
   const handleConsultar = () => {
@@ -60,6 +65,7 @@ export const CrudPadrao = <T extends FieldValues>(props: IProps<T>) => {
   }
 
   const handleVoltar = () => {
+    doLimpar();
     setModo(ModoTipo.Lista);
   }
 
@@ -73,10 +79,12 @@ export const CrudPadrao = <T extends FieldValues>(props: IProps<T>) => {
       obj = await props.api.updateAsync(data);
 
     if(modo == ModoTipo.Exclusao) 
-      obj = await props.api.deleteAsync();
+      obj = await props.api.deleteAsync([data[props.keyField]]);
 
     if(obj) doAtualizarLista(obj);
     setModo(ModoTipo.Lista);
+
+    doLimpar();
   }
 
   const handleEditar = (data: any) => {

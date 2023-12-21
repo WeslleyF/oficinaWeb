@@ -23,7 +23,7 @@ export async function httpPostAsync<T>(url: string, data: T, config? : IRequestC
 }
 
 export async function httpPutAsync<T>(url: string, data: T, config? : IRequestConfig){
-  return (await instance.post<T>(`${url}${getUrlParams(config?.urlParams)}`, data, {params: config?.queryParams})).data;
+  return (await instance.put<T>(`${url}${getUrlParams(config?.urlParams)}`, data, {params: config?.queryParams})).data;
 }
 
 export async function httpDeleteAsync<T>(url: string, config? : IRequestConfig){
@@ -32,7 +32,7 @@ export async function httpDeleteAsync<T>(url: string, config? : IRequestConfig){
 
 function getUrlParams(params? : object[]) : string {
   let urlParams = "";
-  if(params) params.forEach(v => urlParams + "/" + v.toString());
+  if(params) params.forEach(v => urlParams = urlParams + "/" + v.toString());
 
   return urlParams;
 } 

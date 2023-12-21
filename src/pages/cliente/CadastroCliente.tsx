@@ -34,7 +34,7 @@ export const CadastroCliente = () => {
   const apiCliente = useAPICliente();
   const apiCidade = useAPICidade();
   const apiBairro = useAPIBairro();
-  const form = useForm<IFormCLiente>()
+  const form = useForm<IFormCLiente>({defaultValues: {nome: ""}})
   const [listEstados, setListEstados] = useState<IEstado[]>([]);
   const [listCidades, setListCidades] = useState<ICidade[]>([]);
   const [listBairros, setListBairros] = useState<IBairro[]>([]);
