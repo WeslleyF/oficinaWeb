@@ -6,6 +6,6 @@ interface IProps {
 
 export const PageTitle = (props: IProps) =>{
     return ( 
-      <Typography variant="h5" component="h5">{props.children}</Typography>
+      <Typography variant="h5" component="h5" sx={{mb: 1.5}}>{props.children}</Typography>
     )
 }

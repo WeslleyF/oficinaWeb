@@ -1,5 +1,5 @@
-import { useCrudApi } from "../../core/hook/useCrudApi";
-import { IEstado } from "../../types/estado";
+import { useCrudApi } from "../core/hook/useCrudApi";
+import { IEstado } from "../types/estado";
 
 const url = "api/estado";
 

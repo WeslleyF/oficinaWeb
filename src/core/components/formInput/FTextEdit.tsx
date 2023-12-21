@@ -19,11 +19,11 @@ export const FTextEdit = <T extends FieldValues>(props: IProps<T>) => {
             inputRef={field.ref}
             variant="outlined"
             fullWidth={props.fullWidth}
-            value={field.value}
+            value={field.value || ""}
             onChange={field.onChange}
             error={fieldState.error != undefined}
             helperText={fieldState.error?.message}
-            label="props.label"
+            label={props.label}
           />
           )}
         />
