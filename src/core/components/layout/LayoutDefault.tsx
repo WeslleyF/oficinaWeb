@@ -69,6 +69,16 @@ export const LayoutDefault = (props : IProps) => {
                 <Link to="/serviço">Serviço</Link>
               </ListItemButton>
             </ListItem>
+
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <PersonIcon />
+                </ListItemIcon>
+                <Link to="/nota-servico">Nota Serviço</Link>
+              </ListItemButton>
+            </ListItem>
+
         </List>
         <Divider />
       </Drawer>
