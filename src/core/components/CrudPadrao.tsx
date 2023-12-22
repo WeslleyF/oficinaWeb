@@ -109,10 +109,11 @@ export const CrudPadrao = <T extends FieldValues>(props: IProps<T>) => {
       <Box>
         {(modo != ModoTipo.Lista) && (
           <>
-            <Form handleSubmit={props.form.handleSubmit(handleSubmit)} boxPros={{marginBottom: 1}}>
-              {props.children}
-            
-            
+            <Form handleSubmit={props.form.handleSubmit(handleSubmit)} boxPros={{marginBottom: 2}}>
+              <Box sx={{mb: 1}}>
+                {props.children}
+              </Box>
+              
               <BarraAcao flex={1}  display="flex" justifyContent="center" alignItems="center">
                 <Button variant="outlined" color={modo != ModoTipo.Exclusao ? "warning" : "primary"} onClick={handleVoltar} sx={{width: '10rem', }}>Voltar</Button>
                 <Button variant="outlined" color={modo != ModoTipo.Exclusao ? "success" : "error"} type="submit" sx={{width: '10rem', marginLeft: 1 }}> 

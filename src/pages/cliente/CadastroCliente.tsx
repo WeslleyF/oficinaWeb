@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAPIEstado } from "../../api/useAPIEstado"
-import { LayoutDefault } from "../../core/components/LayoutDefault"
-import { PageTitle } from "../../core/components/PageTitle"
+import { LayoutDefault } from "../../core/components/layout/LayoutDefault"
+import { PageTitle } from "../../core/components/layout/PageTitle"
 import { IEstado } from "../../types/estado";
 import { useForm } from "react-hook-form";
 import { FAutoComplete } from "../../core/components/formInput/FAutoComplete";

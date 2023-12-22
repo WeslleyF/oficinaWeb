@@ -1,4 +1,4 @@
-import { LayoutDefault } from "../../core/components/LayoutDefault"
+import { LayoutDefault } from "../../core/components/layout/LayoutDefault"
 
 export const Home = () => {
     return(
