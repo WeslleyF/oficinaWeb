@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, TextFieldProps } from "@mui/material";
 import { Control, Controller, FieldPath, FieldValues } from "react-hook-form"
 
 interface IProps<T extends FieldValues> {
@@ -6,6 +6,7 @@ interface IProps<T extends FieldValues> {
   field: FieldPath<T>,
   label: string,
   fullWidth?: boolean,
+  textFieldProps?: TextFieldProps
 }
 
 export const FTextEdit = <T extends FieldValues>(props: IProps<T>) => {
