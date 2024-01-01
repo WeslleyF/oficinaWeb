@@ -23,7 +23,7 @@ export const LayoutDefault = (props : IProps) => {
   }
   
   return (
-    <Box>
+    <Box marginRight={1}>
       <CssBaseline />
       <AppBar>
         <Toolbar>

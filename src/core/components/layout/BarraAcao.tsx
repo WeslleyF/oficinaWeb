@@ -7,7 +7,7 @@ interface IProps extends BoxProps {
 
 export const BarraAcao = (props: IProps) => { 
     return (
-      <Box {...props} sx={{border: 1, width: '100%', height: '3.5rem', marginBottom: 1, padding: 1, borderColor: 'grey.500', borderRadius: 1}}>
+      <Box {...props} sx={{border: 1, width: '100%', height: props.height ?? '3.5rem', marginBottom: 1, padding: 1, borderColor: 'grey.500', borderRadius: 1,}}>
         {props.children}
       </Box>
     )

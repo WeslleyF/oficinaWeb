@@ -1,7 +1,7 @@
 import { TextField, TextFieldProps } from "@mui/material";
 import { Control, Controller, FieldPath, FieldValues } from "react-hook-form"
 
-interface IProps<T extends FieldValues> {
+type IProps<T extends FieldValues> = TextFieldProps & {
   control: Control<T, any>;
   field: FieldPath<T>,
   label: string,
@@ -16,7 +16,7 @@ export const FTextEdit = <T extends FieldValues>(props: IProps<T>) => {
         control={props.control}
         render={({field, fieldState}) => (
           <TextField
-            {...field}
+            {...field} {...props}
             inputRef={field.ref}
             variant="outlined"
             fullWidth={props.fullWidth}

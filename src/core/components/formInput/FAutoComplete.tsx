@@ -9,6 +9,7 @@ interface IProps<T extends FieldValues> {
   keyField: string,
   fullWidth?: boolean,
   listItens: any[],
+  margin?: "none" | "dense" | "normal";
 }
 
 export function FAutoComplete<T extends FieldValues>(props: IProps<T>) {
@@ -30,7 +31,7 @@ export function FAutoComplete<T extends FieldValues>(props: IProps<T>) {
               {...field}
               inputRef={ref}
               label={props.label}
-              margin="dense"
+              margin={props.margin ?? "dense"}
               // sx={{paddingRight: 1}}
               />
           )}
