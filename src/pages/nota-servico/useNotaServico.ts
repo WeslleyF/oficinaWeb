@@ -47,6 +47,7 @@ export const useNotaServico = (options?: IOptions): useNotaServicoReturn => {
 
   const enviarAsync = async () => {
     await apiNotaServico.addAsync(value);
+    limpar();
   }
 
   const calcular = (notaServico: INotaServico) => {
