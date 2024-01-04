@@ -11,7 +11,6 @@ import { FAutoComplete } from "../../core/components/formInput/FAutoComplete";
 import { FDateTime } from "../../core/components/formInput/FDateTime";
 import { useNotaServico } from "./useNotaServico";
 import { NotaServicoItem } from "./NotaServicoItem";
-import { INotaServicoItem } from "../../types/INotaServicoItem";
 
 export const NotaServico = () => {
   const [dataCadastro] = useState(new Date());
@@ -29,11 +28,7 @@ export const NotaServico = () => {
   const handleCancelar = () => {
     notaServico.limpar();
   }
-
-  const addItem = (item: INotaServicoItem) => {
-    
-  }
-  
+ 
   return(
         <LayoutDefault>
           <PageTitle>Emissão de nota de serviço</PageTitle>
@@ -41,7 +36,8 @@ export const NotaServico = () => {
           <Form handleSubmit={form.handleSubmit(handleSubmit)} boxPros={{width: '100%'}}>
               <Box sx={{mb: 1}}>
                 <BarraAcao>
-                  <Button variant="outlined" color={"success"} type="submit" sx={{width: '10rem', marginLeft: 1 }}> Salvar</Button>
+                  <Button variant="outlined" color={"success"} type="submit" sx={{width: '10rem', marginRight: 1 }}> Salvar</Button>
+                  <Button variant="outlined" color={"warning"} sx={{width: '10rem', }} onClick={handleCancelar}> Cancelar</Button>
                 </BarraAcao> 
                 
                 <Grid container spacing={1}>

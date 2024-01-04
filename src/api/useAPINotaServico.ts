@@ -1,7 +1,7 @@
 import { httpGetAsync, httpPostAsync } from "../core/http/HTTPClient";
 import { INotaServico } from "../types/INotaServico";
 
-const url = "api/estado";
+const url = "api/nota-servico";
 
 export const useApiNotaServico = () => {
     

@@ -8,6 +8,7 @@ export type useNotaServicoItemReturn = {
   value: INotaServicoItem,
   limpar: () => void,
   syncFormValues: (formData: INotaServicoItem) => void,
+  syncExtData: (extData: INotaServicoItem) => void,
   listServicos: IServico[],
 }
 
@@ -48,6 +49,10 @@ export const useNotaServicoItem = (options: IOptions) : useNotaServicoItemReturn
     syncInternalValue(item);
   }
 
+  const syncExtData = (extData: INotaServicoItem) => { 
+    syncInternalValue(extData);
+  }
+
   const initAsync = async () => {
     setListServicos(await apiServico.getAllListaServicoAsync());
   }
@@ -70,6 +75,7 @@ export const useNotaServicoItem = (options: IOptions) : useNotaServicoItemReturn
     value,
     limpar,
     syncFormValues,
+    syncExtData,
     listServicos
   }
 }

@@ -4,6 +4,7 @@ import { useApiNotaServico } from "../../api/useAPINotaServico";
 import { useAPICliente } from "../../api/useAPICliente";
 import { ICliente } from "../../types/cliente";
 import { useNotaServicoItem, useNotaServicoItemReturn } from "./useNotaServicoItem";
+import { INotaServicoItem } from "../../types/INotaServicoItem";
 
 export type useNotaServicoReturn = {
   value: INotaServico,
@@ -12,6 +13,9 @@ export type useNotaServicoReturn = {
   listClientes: ICliente[],
   syncFormValues: (notaServico: INotaServico) => void,
   item: useNotaServicoItemReturn,
+  addItem: (item: INotaServicoItem) => void,
+  updateItem: (item: INotaServicoItem) => void,
+  removeItem: (item: INotaServicoItem) => void,
 }
 
 interface IOptions {
@@ -45,6 +49,46 @@ export const useNotaServico = (options?: IOptions): useNotaServicoReturn => {
     await apiNotaServico.addAsync(value);
   }
 
+  const calcular = (notaServico: INotaServico) => {
+    notaServico.valor = 0;
+    if(notaServico.itens && notaServico.itens.length > 0){
+      notaServico.valor = notaServico.itens.map(nsi => nsi.valorTotal).reduce((total, atual) => total = total + atual)
+    }
+  }
+
+  const addItem = (item: INotaServicoItem) => {
+    const notaServico = {...value};
+    
+    if(!notaServico.itens || notaServico.itens.length == 0)
+      notaServico.itens = [];
+
+    notaServico.itens = [{...item, id: notaServico.itens.length + 1}, ...notaServico.itens];
+    
+    calcular(notaServico);
+    syncInternalValue(notaServico);
+  }
+
+  const updateItem = (item: INotaServicoItem) => {
+    const notaServico = {...value};
+    if(!notaServico.itens) return;
+
+    const index = notaServico.itens.findIndex(x => x.id == item.id);
+    notaServico.itens = [...notaServico.itens.slice(0, index), item, ...notaServico.itens.slice(index + 1)]
+    
+    calcular(notaServico);
+    syncInternalValue(notaServico);
+  }
+
+  const removeItem = (item: INotaServicoItem) => {
+    const notaServico = {...value};
+    if(!notaServico.itens) return;
+
+    notaServico.itens = notaServico.itens.filter(nsi => nsi.id != item.id);
+
+    calcular(notaServico);
+    syncInternalValue(notaServico);
+  }
+
   const limpar = () => {
     const notaServico = {...value};
     notaServico.codNotaServico = 0;
@@ -63,6 +107,9 @@ export const useNotaServico = (options?: IOptions): useNotaServicoReturn => {
     limpar,
     listClientes,
     syncFormValues,
-    item
+    item,
+    addItem,
+    updateItem,
+    removeItem
   }
 }
