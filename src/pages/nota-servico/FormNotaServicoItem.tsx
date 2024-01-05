@@ -18,7 +18,7 @@ interface IProps {
   notaServico: useNotaServicoReturn,
 }
 
-export const NotaServicoItem = (props: IProps) => {
+export const FormNotaServicoItem = (props: IProps) => {
   const formItem = useForm<IFormNotaServicoItem>({values: props.notaServico.item.value});
   const [acao, setAcao] = useState<"cadastro" | "edicao">("cadastro");
 
