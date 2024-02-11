@@ -1,6 +1,6 @@
 import { LayoutDefault } from "../../core/components/layout/LayoutDefault"
 
-export const Home = () => {
+export default function(){
     return(
         <LayoutDefault>
           Página inicial

@@ -8,7 +8,7 @@ import { Button } from "@mui/material";
 import { useApiNotaServico } from "../../api/useAPINotaServico";
 import { INotaServico } from "../../types/INotaServico";
 
-export const NotaServico = () => {
+export default function index(){
   const [acao, setAcao] = useState<"consulta" | "emissao">("consulta");
   const apiNotaServico    = useApiNotaServico();
   const [notas, setNotas] = useState<INotaServico[]>([]);
@@ -17,7 +17,7 @@ export const NotaServico = () => {
     setAcao("consulta");
   }
 
-  const handleEmitir = () => {
+  const handleCadastrar = () => {
     setAcao("emissao");
   }
   
@@ -33,7 +33,7 @@ export const NotaServico = () => {
              <>
                <BarraAcao>
                   <Button variant="outlined" color={"success"} sx={{width: '10rem', marginRight: 1 }} onClick={handleConsultar}> Consultar</Button>
-                  <Button variant="outlined" color={"secondary"} sx={{width: '10rem', }} onClick={handleEmitir}> Emitir</Button>
+                  <Button variant="outlined" color={"secondary"} sx={{width: '10rem', }} onClick={handleCadastrar}> Cadastrar</Button>
                 </BarraAcao> 
                
                <ConsultaNotaServico notas={notas}/>

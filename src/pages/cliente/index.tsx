@@ -15,12 +15,14 @@ import { ICidade } from "../../types/cidade";
 import { IBairro } from "../../types/bairro";
 import { useAPICidade } from "../../api/useAPICidade";
 import { useAPIBairro } from "../../api/useAPIBairro";
+import { FPatternEdit } from "../../core/components/formInput/FPatternEdit";
+import { stringUtils } from "../../core/utils/stringUtils";
 
 const columns: GridColDef[] = [
   { field: "codCliente", headerName: "Código", width: 90 },
   { field: "nome", headerName: "Nome", width: 250 },
-  { field: "cpf", headerName: "CPF", width: 200 },
-  { field: "cnpj", headerName: "CNPJ", width: 200 },
+  { field: "cpf", headerName: "CPF", width: 200, valueGetter: params => stringUtils.formatDocumento(params.value) },
+  { field: "cnpj", headerName: "CNPJ", width: 200, valueGetter: params => stringUtils.formatDocumento(params.value) },
   { field: "inscricaoMunicipal", headerName: "Inscrição municipal", width: 200 },
   { field: "razaoSocial", headerName: "Razão social", width: 200 },
   { field: "cep", headerName: "CEP", width: 200 },
@@ -29,7 +31,7 @@ const columns: GridColDef[] = [
   { field: "logradouro", headerName: "Logradouro", width: 200 },
 ];
 
-export const CadastroCliente = () => {
+export default function(){
   const apiEstado = useAPIEstado();
   const apiCliente = useAPICliente();
   const apiCidade = useAPICidade();
@@ -88,11 +90,11 @@ export const CadastroCliente = () => {
                 </Grid>
 
                 <Grid item xs={12} md={6} lg={6}>
-                  <FTextEdit control={form.control} field="cpf" label="CPF" fullWidth></FTextEdit> 
+                  <FPatternEdit control={form.control} field="cpf" label="CPF" fullWidth format="###.###.###-##"/> 
                 </Grid>
 
                 <Grid item xs={12} md={6} lg={6}>
-                  <FTextEdit control={form.control} field="cnpj" label="CNPJ" fullWidth></FTextEdit> 
+                  <FPatternEdit control={form.control} field="cnpj" label="CNPJ" fullWidth format="##.###.###/####-##"/> 
                 </Grid>
 
                 <Grid item xs={12} md={6} lg={6}>

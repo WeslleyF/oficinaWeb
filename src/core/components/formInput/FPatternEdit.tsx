@@ -1,30 +1,35 @@
 import { TextField, TextFieldProps } from "@mui/material";
 import { Control, Controller, FieldPath, FieldValues } from "react-hook-form"
+import { PatternFormat } from "react-number-format";
 
-type IProps<T extends FieldValues> = TextFieldProps & {
+type IProps<T extends FieldValues> = Omit<TextFieldProps, "value"> & {
   control: Control<T, any>;
   field: FieldPath<T>,
   label: string,
   fullWidth?: boolean,
+  format: string,
 }
 
-export const FTextEdit = <T extends FieldValues>(props: IProps<T>) => {
+export const FPatternEdit = <T extends FieldValues>(props: IProps<T>) => {
     return (
       <Controller
         name={props.field}
         control={props.control}
         render={({field, fieldState}) => (
-          <TextField
-            {...field} {...props}
+          <PatternFormat
+            customInput={TextField}
+            value={field.value}
+            error={fieldState.error != undefined}
+            helperText={fieldState.error?.message}
+            onValueChange={({ value }) => field.onChange(value)}
+            format={props.format}
+
             inputRef={field.ref}
             variant="outlined"
             fullWidth={props.fullWidth}
-            value={field.value || ""}
-            onChange={field.onChange}
-            error={fieldState.error != undefined}
-            helperText={fieldState.error?.message}
             label={props.label}
             autoComplete={props.autoComplete ?? "off"}
+            disabled={props.disabled}
           />
           )}
         />

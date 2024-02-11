@@ -13,6 +13,7 @@ import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { INotaServicoItem } from "../../types/INotaServicoItem";
+import { FNumericEdit } from "../../core/components/formInput/FNumericEdit";
 
 interface IProps {
   notaServico: useNotaServicoReturn,
@@ -64,7 +65,7 @@ export const FormNotaServicoItem = (props: IProps) => {
           </Grid>
           
           <Grid item xs={2} md={2} lg={2}>
-            <FTextEdit control={formItem.control} field="valor" label="Valor" fullWidth disabled></FTextEdit> 
+            <FNumericEdit control={formItem.control} field="valor" label="Valor" fullWidth disabled></FNumericEdit> 
           </Grid>
 
           <Grid item xs={1} md={1} lg={1}>
@@ -72,7 +73,7 @@ export const FormNotaServicoItem = (props: IProps) => {
           </Grid>
 
           <Grid item xs={2} md={2} lg={2}>
-            <FTextEdit control={formItem.control} field="valorTotal" label="Total" fullWidth disabled></FTextEdit> 
+            <FNumericEdit control={formItem.control} field="valorTotal" label="Total" fullWidth disabled></FNumericEdit> 
           </Grid>
 
           <Grid item xs={0.5} md={0.5} lg={0.5}>

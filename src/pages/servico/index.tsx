@@ -7,14 +7,15 @@ import { useAPIServico } from "../../api/useAPIServico";
 import { IFormServico } from "./types";
 import { GridColDef } from "@mui/x-data-grid";
 import { FTextEdit } from "../../core/components/formInput/FTextEdit";
+import { numberUtils } from "../../core/utils/numberUtils";
 
 const columns: GridColDef[] = [
   { field: "codServico", headerName: "Código", width: 90 },
   { field: "descricao", headerName: "Serviço", width: 250 },
-  { field: "valor", headerName: "Valor", width: 200 },
+  { field: "valor", headerName: "Valor", width: 200, valueGetter: params => numberUtils.formatDecimal(params.value) },
 ];
 
-export const CadastroServico = () => {
+export default function index(){
   const apiServico = useAPIServico();
   const form = useForm<IFormServico>({defaultValues: {}})
   

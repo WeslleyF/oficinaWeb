@@ -1,0 +1,41 @@
+import { TextField, TextFieldProps } from "@mui/material";
+import { Control, Controller, FieldPath, FieldValues } from "react-hook-form"
+import { NumericFormat } from "react-number-format";
+
+type IProps<T extends FieldValues> = Omit<TextFieldProps, "value"> & {
+  control: Control<T, any>;
+  field: FieldPath<T>,
+  label: string,
+  fullWidth?: boolean,
+  decimalScale?: number
+}
+
+
+export const FNumericEdit = <T extends FieldValues>(props: IProps<T>) => {
+    return (
+      <Controller
+        name={props.field}
+        control={props.control}
+        render={({field, fieldState}) => (
+          <NumericFormat
+            customInput={TextField}
+            value={field.value}
+            error={fieldState.error != undefined}
+            helperText={fieldState.error?.message}
+            onValueChange={({ value }) => field.onChange(value)}
+            decimalScale={props.decimalScale ?? 2}
+            decimalSeparator=","
+            thousandSeparator="."
+            fixedDecimalScale
+
+            inputRef={field.ref}
+            variant="outlined"
+            fullWidth={props.fullWidth}
+            label={props.label}
+            autoComplete={props.autoComplete ?? "off"}
+            disabled={props.disabled}
+          />
+          )}
+        />
+    )
+}

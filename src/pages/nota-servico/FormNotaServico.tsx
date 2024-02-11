@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { FTextEdit } from "../../core/components/formInput/FTextEdit";
 import { Form } from "../../core/components/form/Form";
 import { BarraAcao } from "../../core/components/layout/BarraAcao";
 import { IFormNotaServico } from "./types";
@@ -9,6 +8,7 @@ import { FAutoComplete } from "../../core/components/formInput/FAutoComplete";
 import { FDateTime } from "../../core/components/formInput/FDateTime";
 import { useNotaServico } from "./useNotaServico";
 import { FormNotaServicoItem } from "./FormNotaServicoItem";
+import { FNumericEdit } from "../../core/components/formInput/FNumericEdit";
 
 interface IProps{
   onFinish: () => void,
@@ -58,7 +58,7 @@ export const FormNotaServico = (props: IProps) => {
                   </Grid>
 
                   <Grid item xs={12} md={4} lg={4}>
-                    <FTextEdit control={form.control} field="valor" label="Valor" fullWidth disabled></FTextEdit> 
+                    <FNumericEdit control={form.control} field="valor" label="Valor" fullWidth disabled></FNumericEdit> 
                   </Grid>
                 </Grid> 
               </Box>
