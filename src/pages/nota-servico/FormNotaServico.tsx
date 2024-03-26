@@ -2,13 +2,13 @@ import { useForm } from "react-hook-form";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { Form } from "../../core/components/form/Form";
 import { BarraAcao } from "../../core/components/layout/BarraAcao";
-import { IFormNotaServico } from "./types";
 import { useEffect, useState } from "react";
 import { FAutoComplete } from "../../core/components/formInput/FAutoComplete";
 import { FDateTime } from "../../core/components/formInput/FDateTime";
 import { useNotaServico } from "./useNotaServico";
 import { FormNotaServicoItem } from "./FormNotaServicoItem";
 import { FNumericEdit } from "../../core/components/formInput/FNumericEdit";
+import { INotaServico } from "../../types/INotaServico";
 
 interface IProps{
   onFinish: () => void,
@@ -17,7 +17,7 @@ interface IProps{
 export const FormNotaServico = (props: IProps) => {
   const [dataCadastro] = useState(new Date());
   const notaServico = useNotaServico({defaultValues: {dataCadastro: dataCadastro, dataPrestacao: dataCadastro}});
-  const form = useForm<IFormNotaServico>({values: notaServico.value});
+  const form = useForm<INotaServico>({values: notaServico.value});
 
   useEffect(() => {
      notaServico.syncFormValues(form.getValues());

@@ -3,7 +3,7 @@ import { Grid, IconButton, Typography } from "@mui/material";
 import { FTextEdit } from "../../core/components/formInput/FTextEdit";
 import { Form } from "../../core/components/form/Form";
 import { BarraAcao } from "../../core/components/layout/BarraAcao";
-import { IFormNotaServicoItem } from "./types";
+import { notaServicoItemSchema } from "./types";
 import { useEffect, useState } from "react";
 import { FAutoComplete } from "../../core/components/formInput/FAutoComplete";
 import { useNotaServicoReturn } from "./useNotaServico";
@@ -14,20 +14,23 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { INotaServicoItem } from "../../types/INotaServicoItem";
 import { FNumericEdit } from "../../core/components/formInput/FNumericEdit";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface IProps {
   notaServico: useNotaServicoReturn,
 }
 
 export const FormNotaServicoItem = (props: IProps) => {
-  const formItem = useForm<IFormNotaServicoItem>({values: props.notaServico.item.value});
+  const formItem = useForm<INotaServicoItem>({values: props.notaServico.item.value, 
+                                             resolver: yupResolver(notaServicoItemSchema)});
+
   const [acao, setAcao] = useState<"cadastro" | "edicao">("cadastro");
 
   useEffect(() => {
     props.notaServico.item.syncFormValues(formItem.getValues());
  }, [formItem.watch("codServico"), formItem.watch("qtd")]);
    
-  const handleSubmit = async (data: IFormNotaServicoItem) => {
+  const handleSubmit = async (data: INotaServicoItem) => {
     if(acao == "cadastro")
       props.notaServico.addItem(data);
 
