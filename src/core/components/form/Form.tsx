@@ -7,7 +7,7 @@ interface Iprops {
   boxPros?: BoxProps;
 }
 
-export const Form = (props : Iprops) => {
+export const Form = (props : Iprops) => {  
   return(
     <Box component={"form"} onSubmit={props.handleSubmit} {...props.boxPros}>
       {props.children}
